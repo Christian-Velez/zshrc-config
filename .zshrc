@@ -1,24 +1,23 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
-
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # === PROMPT ===
-declare -a COLOR_SCHEMES
-COLOR_SCHEMES=(
-    "pink"
-    "blue"
-    "yellow"
-    "green"
-)
-declare -r COLOR_SCHEMES
+#declare -a COLOR_SCHEMES
+#COLOR_SCHEMES=(
+#    "pink"
+#    "blue"
+#    "yellow"
+#    "green"
+#)
+#declare -r COLOR_SCHEMES
 
-LAST_INDEX=(${#COLOR_SCHEMES[@]})
-RANDOM_INDEX=$(( ( RANDOM % ${LAST_INDEX} )  + 1 ))
-COLOR=${COLOR_SCHEMES[RANDOM_INDEX]}
+#LAST_INDEX=(${#COLOR_SCHEMES[@]})
+#RANDOM_INDEX=$(( ( RANDOM % ${LAST_INDEX} )  + 1 ))
+#COLOR=${COLOR_SCHEMES[RANDOM_INDEX]}
+COLOR=pink
 
 DARK_COLOR=0
 LIGHT_COLOR=0
 
-echo "${COLOR}"
 if [ "$COLOR" = "pink" ]; then
    DARK_COLOR=204
    LIGHT_COLOR=211
@@ -38,10 +37,14 @@ fi
 
 PROMPT="%B%F{${DARK_COLOR}} %n%f%b in %F{${LIGHT_COLOR}}%~%f %F{015}"
 
+# === ALIAS ===
+alias cdesk='cd /Users/christian/Desktop'
 
+# === VARS ===
+export PATH=~/.composer/vendor/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
